@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  userapp-networks:
+    driver: bridge
+
+services:
+  db:
+    container_name: userapp-mysql-db
+    build: 
+      context: ./docker/mysql
+      dockerfile: Dockerfile
+    image: mysql-test
+    networks:
+      - userapp-networks
+    volumes:
+      - D:/studyspace/docker-playground/mysql/data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  web:
+    container_name: userapp-spring-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spring-test
+    depends_on:
+      - db
+    networks:
+      - userapp-networks
+    ports:
+      - "8080:8080"

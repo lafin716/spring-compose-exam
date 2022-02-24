@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: local
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://userapp-mysql-db:3306/userappdb?autoReconnect=true"
+    username: userapp
+    password: userapp
+    hikari:
+      auto-commit: false
+      connection-test-query: SELECT 1
+      minimum-idle: 10
+      maximum-pool-size: 50
+      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
+      pool-name: pool-jiniworld_demo
+  jpa:
+    show-sql: true
+#    database-platform: org.hibernate.
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+#        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+#    open-in-view: false
